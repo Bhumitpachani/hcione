@@ -231,7 +231,7 @@ app.post('/api/send-contact', async (req, res) => {
     // Email options - FIXED SYNTAX ERROR
     const mailOptions = {
       from: '"aavrti Contact Form" <bhumit@aavrti.com>',
-      to: 'gaurang@aavrti.com, deepak@aavrti.com',
+      to: 'Daviddawod@hcic.com, Johnpratt@hcic.com',
       subject: `New Contact Form Submission from ${name}`,
       html: htmlTemplate,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` // Fixed: Added closing quote
