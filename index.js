@@ -17,7 +17,7 @@ app.options('*', cors());
 // Middleware to parse JSON
 app.use(express.json());
 
-// Email template function
+// Email template function - Professional & Clean Design
 const getEmailTemplate = (name, email, message) => {
   return `
     <!DOCTYPE html>
@@ -33,127 +33,153 @@ const getEmailTemplate = (name, email, message) => {
           box-sizing: border-box;
         }
         body {
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          background-color: #f4f7fa;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+          background-color: #f5f5f5;
           padding: 20px;
+          line-height: 1.6;
         }
-        .email-container {
-          max-width: 600px;
+        .email-wrapper {
+          max-width: 650px;
           margin: 0 auto;
           background-color: #ffffff;
-          border-radius: 12px;
-          overflow: hidden;
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+          border: 1px solid #e0e0e0;
         }
         .header {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          padding: 40px 30px;
-          text-align: center;
-          color: #ffffff;
+          background-color: #1a1a1a;
+          padding: 30px 40px;
+          border-bottom: 3px solid #0066cc;
         }
-        .header h1 {
-          font-size: 28px;
+        .logo {
+          font-size: 24px;
           font-weight: 600;
-          margin-bottom: 8px;
-        }
-        .header p {
-          font-size: 14px;
-          opacity: 0.9;
+          color: #ffffff;
+          letter-spacing: 0.5px;
         }
         .content {
-          padding: 40px 30px;
+          padding: 40px;
         }
-        .info-card {
-          background-color: #f8f9fc;
-          border-left: 4px solid #667eea;
-          padding: 20px;
-          margin-bottom: 20px;
-          border-radius: 8px;
+        .title {
+          font-size: 20px;
+          font-weight: 600;
+          color: #1a1a1a;
+          margin-bottom: 10px;
+        }
+        .subtitle {
+          font-size: 14px;
+          color: #666666;
+          margin-bottom: 30px;
+        }
+        .info-section {
+          margin-bottom: 25px;
+        }
+        .info-row {
+          display: table;
+          width: 100%;
+          margin-bottom: 18px;
+          border-bottom: 1px solid #f0f0f0;
+          padding-bottom: 18px;
+        }
+        .info-row:last-child {
+          border-bottom: none;
+          margin-bottom: 0;
         }
         .info-label {
-          font-size: 12px;
-          text-transform: uppercase;
-          letter-spacing: 1px;
-          color: #667eea;
+          font-size: 13px;
           font-weight: 600;
-          margin-bottom: 8px;
+          color: #555555;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 6px;
         }
         .info-value {
-          font-size: 16px;
-          color: #2d3748;
+          font-size: 15px;
+          color: #1a1a1a;
           word-wrap: break-word;
         }
-        .message-box {
-          background-color: #ffffff;
-          border: 2px solid #e2e8f0;
-          border-radius: 8px;
-          padding: 20px;
-          margin-top: 20px;
+        .message-section {
+          background-color: #fafafa;
+          padding: 25px;
+          border-left: 3px solid #0066cc;
+          margin-top: 30px;
         }
-        .message-box .info-label {
-          color: #764ba2;
-          border-left: none;
+        .message-label {
+          font-size: 13px;
+          font-weight: 600;
+          color: #555555;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-bottom: 12px;
         }
-        .message-box .info-value {
-          line-height: 1.6;
-          color: #4a5568;
+        .message-content {
+          font-size: 15px;
+          color: #333333;
+          line-height: 1.7;
+          white-space: pre-wrap;
         }
         .footer {
-          background-color: #f8f9fc;
-          padding: 25px 30px;
-          text-align: center;
-          border-top: 1px solid #e2e8f0;
+          background-color: #f9f9f9;
+          padding: 25px 40px;
+          border-top: 1px solid #e0e0e0;
         }
-        .footer p {
+        .footer-text {
           font-size: 13px;
-          color: #718096;
+          color: #666666;
+          text-align: center;
           margin-bottom: 8px;
+        }
+        .footer-company {
+          font-size: 14px;
+          font-weight: 600;
+          color: #1a1a1a;
+          text-align: center;
+          margin-bottom: 12px;
         }
         .timestamp {
           font-size: 12px;
-          color: #a0aec0;
-          margin-top: 10px;
+          color: #999999;
+          text-align: center;
         }
-        .badge {
-          display: inline-block;
-          background-color: #48bb78;
-          color: white;
-          padding: 6px 14px;
-          border-radius: 20px;
-          font-size: 12px;
-          font-weight: 600;
-          margin-top: 10px;
+        .divider {
+          height: 1px;
+          background-color: #e0e0e0;
+          margin: 25px 0;
         }
       </style>
     </head>
     <body>
-      <div class="email-container">
+      <div class="email-wrapper">
         <div class="header">
-          <h1>HCI ONE Platform</h1>
+          <div class="logo">HCI ONE PLATFORM</div>
         </div>
         
         <div class="content">
-          <div class="info-card">
-            <div class="info-label">👤 Full Name</div>
-            <div class="info-value">${name}</div>
+          <div class="title">New Contact Form Submission</div>
+          <div class="subtitle">You have received a new inquiry through your website contact form.</div>
+          
+          <div class="divider"></div>
+          
+          <div class="info-section">
+            <div class="info-row">
+              <div class="info-label">Full Name</div>
+              <div class="info-value">${name}</div>
+            </div>
+            
+            <div class="info-row">
+              <div class="info-label">Email Address</div>
+              <div class="info-value">${email}</div>
+            </div>
           </div>
           
-          <div class="info-card">
-            <div class="info-label">📧 Email Address</div>
-            <div class="info-value">${email}</div>
-          </div>
-          
-          <div class="message-box">
-            <div class="info-label">💬 Message</div>
-            <div class="info-value">${message}</div>
+          <div class="message-section">
+            <div class="message-label">Message Content</div>
+            <div class="message-content">${message}</div>
           </div>
         </div>
         
         <div class="footer">
-          <p><strong>HCIC Contact System</strong></p>
-          <p>This is an automated message from your contact form</p>
-          <div class="timestamp">Received on: ${new Date().toLocaleString('en-US', { 
-            weekday: 'long', 
+          <div class="footer-company">HCIC Contact System</div>
+          <div class="footer-text">This is an automated notification from your contact form system.</div>
+          <div class="timestamp">Received: ${new Date().toLocaleString('en-US', { 
             year: 'numeric', 
             month: 'long', 
             day: 'numeric',
@@ -205,7 +231,7 @@ app.post('/api/send-contact', async (req, res) => {
     // Email options - FIXED SYNTAX ERROR
     const mailOptions = {
       from: '"aavrti Contact Form" <bhumit@aavrti.com>',
-      to: 'gaurang@aavrti.com, deepak@aavrti.com, arpan@aavrti.com',
+      to: 'gaurang@aavrti.com, deepak@aavrti.com',
       subject: `New Contact Form Submission from ${name}`,
       html: htmlTemplate,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` // Fixed: Added closing quote
