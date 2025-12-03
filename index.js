@@ -117,9 +117,7 @@ const getEmailTemplate = (name, email, message) => {
     <body>
       <div class="email-container">
         <div class="header">
-          <h1>📬 New Contact Submission</h1>
-          <p>You have received a new message from HCI ONE Platform</p>
-          <span class="badge">NEW</span>
+          <h1>HCI ONE Platform</h1>
         </div>
         
         <div class="content">
@@ -194,10 +192,10 @@ app.post('/api/send-contact', async (req, res) => {
     // Email options
     const mailOptions = {
       from: '"aavrti Contact Form" <bhumit@aavrti.com>',
-      to: 'gaurang@aavrti.com, deepak@aavrti.com',
+      to: 'gaurang@aavrti.com, deepak@aavrti.com, arpan@aavrti.com',
       subject: `New Contact Form Submission from ${name}`,
       html: htmlTemplate,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` // Plain text fallback
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}
     };
 
     // Send email
