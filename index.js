@@ -1,11 +1,23 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
-const cors =require('cors');
+const cors = require('cors');
 const app = express();
-app.use(cors());
 
+// CORS Configuration - Allow all origins
+app.use(cors({
+  origin: '*', // Allow all origins, or specify your frontend URL like 'http://localhost:3000'
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+}));
+
+// Handle preflight requests
+app.options('*', cors());
+
+// Middleware to parse JSON
 app.use(express.json());
 
+// Email template function
 const getEmailTemplate = (name, email, message) => {
   return `
     <!DOCTYPE html>
@@ -155,6 +167,7 @@ const getEmailTemplate = (name, email, message) => {
   `;
 };
 
+// Configure nodemailer transporter
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -189,13 +202,13 @@ app.post('/api/send-contact', async (req, res) => {
 
     const htmlTemplate = getEmailTemplate(name, email, message);
 
-    // Email options
+    // Email options - FIXED SYNTAX ERROR
     const mailOptions = {
       from: '"aavrti Contact Form" <bhumit@aavrti.com>',
       to: 'gaurang@aavrti.com, deepak@aavrti.com, arpan@aavrti.com',
       subject: `New Contact Form Submission from ${name}`,
       html: htmlTemplate,
-      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}
+      text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}` // Fixed: Added closing quote
     };
 
     // Send email
